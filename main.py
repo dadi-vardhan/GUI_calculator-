@@ -1,6 +1,10 @@
+import sys
 import PyQt5.QtWidgets as qtw
-from calc_layout import CalculatorMainWindow
+from simple_gui_calc import Simple_Calc
 
-app = qtw.QApplication([])
-mainWindow = CalculatorMainWindow()
-app.exec_()
+
+if __name__ == '__main__':
+    app = qtw.QApplication(sys.argv)
+    mainWindow = Simple_Calc()
+    sys.exit(app.exec_())
+
