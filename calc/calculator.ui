@@ -47,32 +47,6 @@ QPushButton:pressed{
       </property>
      </widget>
     </item>
-    <item row="3" column="4">
-     <widget class="QPushButton" name="MemGet">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-  background-color: #FF8C00;
-  border: 1px solid gray;
-  padding: 5px;
-}
-
-QPushButton:pressed{
-  background-color: #A9A9A9;
-  border: 1px solid gray;
-  padding: 5px;
-}</string>
-      </property>
-      <property name="text">
-       <string>M</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="0">
      <widget class="QPushButton" name="Button1">
       <property name="sizePolicy">
@@ -96,32 +70,6 @@ QPushButton:pressed{
       </property>
       <property name="text">
        <string>1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4">
-     <widget class="QPushButton" name="Equals">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-  background-color: #FF8C00;
-  border: 1px solid gray;
-  padding: 5px;
-}
-
-QPushButton:pressed{
-  background-color: #A9A9A9;
-  border: 1px solid gray;
-  padding: 5px;
-}</string>
-      </property>
-      <property name="text">
-       <string>=</string>
       </property>
      </widget>
     </item>
@@ -226,32 +174,6 @@ QPushButton:pressed{
       </property>
       <property name="text">
        <string>/</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QPushButton" name="MemAdd">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-  background-color: #FF8C00;
-  border: 1px solid gray;
-  padding: 5px;
-}
-
-QPushButton:pressed{
-  background-color: #A9A9A9;
-  border: 1px solid gray;
-  padding: 5px;
-}</string>
-      </property>
-      <property name="text">
-       <string>M+</string>
       </property>
      </widget>
     </item>
@@ -546,8 +468,8 @@ QPushButton:pressed{
       </property>
      </widget>
     </item>
-    <item row="2" column="4">
-     <widget class="QPushButton" name="MemClear">
+    <item row="1" column="4" rowspan="4">
+     <widget class="QPushButton" name="Equals">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -568,7 +490,7 @@ QPushButton:pressed{
 }</string>
       </property>
       <property name="text">
-       <string>M-</string>
+       <string>=</string>
       </property>
      </widget>
     </item>

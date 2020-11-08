@@ -93,7 +93,7 @@ void calculator::EqualButtonPressed(){
         }else if(multTrigger){
             solution = calcVal * dblDisplayVal;
         }else if(divTrigger){
-            solution = calcVal + dblDisplayVal;
+            solution = calcVal / dblDisplayVal;
         }
 
     }
