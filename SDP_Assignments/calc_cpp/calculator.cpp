@@ -78,6 +78,27 @@ void calculator::MathButtonPressed(){
      ui->Display->setText("");
 }
 
+double calculator::add(double x,double y){
+
+    return x+y;
+}
+
+double calculator::subtract(double x,double y){
+
+    return x-y;
+}
+
+double calculator::multiply(double x,double y){
+
+    return x*y;
+}
+
+double calculator::divide(double x,double y){
+
+    return x/y;
+}
+
+
 void calculator::EqualButtonPressed(){
 
     double solution = 0.0;
@@ -87,13 +108,13 @@ void calculator::EqualButtonPressed(){
     if(addTrigger||subTrigger||multTrigger||divTrigger){
 
         if(addTrigger){
-            solution = calcVal + dblDisplayVal;
+            solution = add(calcVal,dblDisplayVal);
         } else if(subTrigger){
-            solution = calcVal - dblDisplayVal;
+            solution = subtract(calcVal,dblDisplayVal);
         }else if(multTrigger){
-            solution = calcVal * dblDisplayVal;
+            solution = multiply(calcVal,dblDisplayVal);
         }else if(divTrigger){
-            solution = calcVal + dblDisplayVal;
+            solution = divide(calcVal,dblDisplayVal);
         }
 
     }
