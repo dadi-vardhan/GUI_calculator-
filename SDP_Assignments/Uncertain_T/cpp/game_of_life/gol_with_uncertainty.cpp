@@ -109,10 +109,10 @@ void determineState(bool gridOne[gridSize+1][gridSize+1]){
             {
                 gridOne[a][b] = true;
             }
-            // else if(alive >= 2 && alive <= 3)
-            // {
-            //     gridOne[a][b] = true;
-            // }
+            else if(alive >= 2 && alive <= 3)
+            {
+                gridOne[a][b] = true;
+            }
             else if(alive > 3)
             {
                 gridOne[a][b] = false;
