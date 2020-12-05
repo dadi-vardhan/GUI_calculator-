@@ -4,14 +4,12 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-
 #include <math.h>
 #include <vector>
 #include <cmath>
 #include <limits>
 #include <algorithm>
 #include <functional>
-#include "uncertain_t.h"
 
 
 
@@ -66,7 +64,7 @@ void compareGrid (bool gridOne[gridSize+1][gridSize+1], bool gridTwo[gridSize+1]
 void determineState(bool gridOne[gridSize+1][gridSize+1]){
     bool gridTwo[gridSize+1][gridSize+1] = {};
     compareGrid(gridOne, gridTwo);
-    Array<double> one(1.0); 
+    // Array<double> one(1.0); 
     for(int a = 1; a < gridSize; a++)
     {
         for(int b = 1; b < gridSize; b++)
@@ -80,10 +78,10 @@ void determineState(bool gridOne[gridSize+1][gridSize+1]){
                 {
                     if(!(c == 0 && d == 0))
                     {   
-                        Array<double> sense((double)gridTwo[a+c][b+d]); 
+                        // Array<double> sense((double)gridTwo[a+c][b+d]); 
 
-                        // if(gridTwo[a+c][b+d])
-                        if(sense.mu > 0.5)
+                        if(gridTwo[a+c][b+d])
+                        // if(sense.mu > 0.5)
 				{   
                     // Array<double> to_add(1.0); 
                     // cout << "to add " << to_add.mu << endl;  
@@ -109,10 +107,10 @@ void determineState(bool gridOne[gridSize+1][gridSize+1]){
             {
                 gridOne[a][b] = true;
             }
-            else if(alive >= 2 && alive <= 3)
-            {
-                gridOne[a][b] = true;
-            }
+            // else if(alive >= 2 && alive <= 3)
+            // {
+            //     gridOne[a][b] = true;
+            // }
             else if(alive > 3)
             {
                 gridOne[a][b] = false;
