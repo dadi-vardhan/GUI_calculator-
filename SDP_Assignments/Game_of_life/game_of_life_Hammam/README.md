@@ -21,3 +21,14 @@ The following demos demonstrate the performance of the current code with gaussia
 ### Bayes Life 
 
 ![](uncertain_gol/demos/gol_bayes_life.gif)
+
+
+## How to run it 
+
+To run Game of Life with Bayes Life with g++, on the terminal add the following commands 
+
+`g++ -std=c++11 -o gol_bayes gol_with_uncertainty_bayes_life.cpp`
+
+`./gol_bayes`
+
+
