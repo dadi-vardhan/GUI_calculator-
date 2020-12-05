@@ -32,3 +32,9 @@ To run Game of Life with Bayes Life with g++, on the terminal add the following 
 `./gol_bayes`
 
 
+### Areas of modification 
+
+It should be noted that the sampling function implemented in Game of Life (c++) is `Histogram`. While in the c# code and paper the sampling function used is the `Monte Carelo` method. This is to be updated later on after understanding how Monte Carlo Sampling works. 
+
+
+
