@@ -21,3 +21,20 @@ The following demos demonstrate the performance of the current code with gaussia
 ### Bayes Life 
 
 ![](uncertain_gol/demos/gol_bayes_life.gif)
+
+
+## How to run it 
+
+To run Game of Life with Bayes Life with g++, on the terminal add the following commands 
+
+`g++ -std=c++11 -o gol_bayes gol_with_uncertainty_bayes_life.cpp`
+
+`./gol_bayes`
+
+
+### Areas of modification 
+
+It should be noted that the sampling function implemented in Game of Life (c++) is `Histogram`. While in the c# code and paper the sampling function used is the `Monte Carelo` method. This is to be updated later on after understanding how Monte Carlo Sampling works. 
+
+
+
