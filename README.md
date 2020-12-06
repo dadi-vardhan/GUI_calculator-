@@ -9,6 +9,10 @@ This repository contains the course work for SDP class WiSe 2020/21 in Hochschul
 -   Krishna Nallanukala. 
 -   Hammam Abdelwahab. 
 
+## Supervised by 
+
+- Deebul Nair. 
+
 
 ## Project Title 
 Uncertain <T> : A First-Order Type for Uncertain Data
