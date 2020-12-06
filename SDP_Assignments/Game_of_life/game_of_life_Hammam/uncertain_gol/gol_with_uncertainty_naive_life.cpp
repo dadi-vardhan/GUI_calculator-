@@ -81,8 +81,9 @@ void determineState(float gridOne[gridSize+1][gridSize+1]){
     {
         for(int b = 1; b < gridSize; b++)
         {
-            Uncertain<float> alive(0,0); 
-            Uncertain<float> one(1.0,0);
+            // Uncertain<float> alive(0,0); 
+            // Uncertain<float> one(1.0,0);
+            float alive = 0; 
             // double meas = 0.0;  
             // Array<double> alive(2.0);
             for(int c = -1; c < 2; c++)
@@ -94,11 +95,11 @@ void determineState(float gridOne[gridSize+1][gridSize+1]){
                         Gaussian measure((float)gridTwo[a+c][b+d],0.5);
                         float sample = measure.GetSample(); 
                         
-                        if(sample>=0.5)
-				{   
-                    alive= alive + one;
+                        // if(sample>=0.5)
+				// {   
+                    alive= alive + sample;
                     
-				}
+				// }
                     }
                 }
              }
@@ -116,10 +117,10 @@ void determineState(float gridOne[gridSize+1][gridSize+1]){
             {
                 gridOne[a][b] = 1.0;
             }
-            // else if(alive >= 2 && alive <= 3)
-            // {
-            //     gridOne[a][b] = 1.0;
-            // }
+            else if(alive >= 2 && alive <= 3)
+            {
+                gridOne[a][b] = 1.0;
+            }
             else if(alive > 3)
             {
                 gridOne[a][b] = 0.0;
