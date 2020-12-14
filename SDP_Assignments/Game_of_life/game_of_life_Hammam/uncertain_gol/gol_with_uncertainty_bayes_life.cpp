@@ -4,15 +4,14 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-
 #include <math.h>
 #include <vector>
 #include <cmath>
 #include <limits>
 #include <algorithm>
 #include <functional>
-#include "uncertain_t.h"
-
+#include "uncertain.h"
+#include "gaussian.h"
 
 
 
@@ -20,13 +19,17 @@
 // https://github.com/MarioTalevski/game-of-life/blob/master/GameOfLife.cpp
 
 using namespace std;
-const int gridSize = 8; 
-void printGrid(bool gridOne[gridSize+1][gridSize+1]){
+const int gridSize = 6; 
+
+// Gaussian one(1.0,0.01); 
+// Gaussian zero(0.0,0.01);
+
+void printGrid(float gridOne[gridSize+1][gridSize+1]){
     for(int a = 1; a < gridSize; a++)
         {
         for(int b = 1; b < gridSize; b++)
         {
-            if(gridOne[a][b] == true)
+            if(gridOne[a][b] == 1.0)
             {
                 cout << " 0 ";
             }
@@ -53,7 +56,7 @@ void clearScreen(void) {
 
 }
 
-void compareGrid (bool gridOne[gridSize+1][gridSize+1], bool gridTwo[gridSize+1][gridSize+1]){
+void compareGrid (float gridOne[gridSize+1][gridSize+1], float gridTwo[gridSize+1][gridSize+1]){
     for(int a =0; a < gridSize; a++)
     {
         for(int b = 0; b < gridSize; b++)
@@ -63,59 +66,59 @@ void compareGrid (bool gridOne[gridSize+1][gridSize+1], bool gridTwo[gridSize+1]
     }
 }
 
-void determineState(bool gridOne[gridSize+1][gridSize+1]){
-    bool gridTwo[gridSize+1][gridSize+1] = {};
+
+void determineState(float gridOne[gridSize+1][gridSize+1]){
+
+    // Uncertain<double> test = Gaussian(0.0,0.4); 
+    // Uncertain<double> test1 = Gaussian(1.0,0.4); 
+    
+
+    float gridTwo[gridSize+1][gridSize+1] = {};
     compareGrid(gridOne, gridTwo);
-    Array<double> one(1.0); 
+    // Array<double> one(1.0); 
+    // Gaussian test(1.0,0.4);
     for(int a = 1; a < gridSize; a++)
     {
         for(int b = 1; b < gridSize; b++)
         {
-            int alive = 0; 
+            Uncertain<float> alive(0,0); 
+            Uncertain<float> one(1.0,0);
             // double meas = 0.0;  
             // Array<double> alive(2.0);
             for(int c = -1; c < 2; c++)
             {
                 for(int d = -1; d < 2; d++)
-                {
+                {   
                     if(!(c == 0 && d == 0))
                     {   
-                        Array<double> sense((double)gridTwo[a+c][b+d]); 
-
-                        // if(gridTwo[a+c][b+d])
-                        if(sense.mu > 0.5)
+                        Uncertain<float> test = Gaussian((float)gridTwo[a+c][b+d],0.5);
+                        
+                        if(test>=0.5)
 				{   
-                    // Array<double> to_add(1.0); 
-                    // cout << "to add " << to_add.mu << endl;  
-					// alive = alive + one;
-                    
-                    // cout << alive.ptr[3] << endl; 
-                    ++alive;
+
+                    alive= alive + one;
+                    // cout << alive.e() << endl; 
                     
 				}
                     }
                 }
-            }
+             }
             
-            // cout << "alive equals" <<  alive.mu << endl; 
-            // cout << "alive < 2 " << alive.pr_l(2) << endl;  
-            // cout << "alive > 3 " << alive.pr_g(3) << endl;
-            // cout << "alive == 3 " << alive.pr_eq(3) << endl;
             if(alive < 2)
             {
-                gridOne[a][b] = false;
+                gridOne[a][b] = 0.0;
             }
             else if(alive == 3)
             {
-                gridOne[a][b] = true;
+                gridOne[a][b] = 1.0;
             }
-            else if(alive >= 2 && alive <= 3)
-            {
-                gridOne[a][b] = true;
-            }
+            // else if(alive >= 2 && alive <= 3)
+            // {
+            //     gridOne[a][b] = 1.0;
+            // }
             else if(alive > 3)
             {
-                gridOne[a][b] = false;
+                gridOne[a][b] = 0.0;
             }
         }
     }
@@ -124,28 +127,22 @@ void determineState(bool gridOne[gridSize+1][gridSize+1]){
 
 int main(){
 
-    bool gridOne[gridSize +1 ][gridSize +1] = {};
+    float gridOne[gridSize +1 ][gridSize +1] = {};
 
-    // for (int i =0; i< 5; i++)
+
     gridOne[3][3] = 1.0; 
     gridOne[3][2] = 1.0;
     gridOne[3][4] = 1.0;
-    // gridOne[3][6] = true;
-    // gridOne[2][5] = true;
-    // gridOne[2][5] = true;
-    // gridOne[7][4] = true;   
-    // gridOne[5][4] = true;
-    // gridOne[5][5] = true;
-    // gridOne[6][5] = true;
-    // gridOne[5][6] = true;            
-    while (true)
-	  {
+
+    int count = 0; 
+
+    while (count < 25)
+	  {count++;
     printGrid(gridOne);
     determineState(gridOne);
     usleep(200000);
     clearScreen();
 	  }
-
 
 
    

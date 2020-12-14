@@ -2,6 +2,7 @@ Steps to Run the Program and Visualize the Output
 
 Step-1: 
 	run the python program by using the command: python3 GOLPattern.py
+	run the python program (Naive Life) by using the command: python3 GOLPattern_NaiveLife.py 
  
  Step-2:
  	In the console press "Enter" Key once
