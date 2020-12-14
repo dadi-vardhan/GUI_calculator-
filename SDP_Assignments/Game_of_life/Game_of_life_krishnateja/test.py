@@ -1,9 +1,9 @@
-from game_of_life import *
+from game_of_life_naive import *
 import pytest
 import sys
 
-size = 100
-live= 255
+size = 20
+live= 1
 dead = 0
 vals = [live, dead]
 
