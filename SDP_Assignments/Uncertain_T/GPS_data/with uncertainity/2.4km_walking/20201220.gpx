@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?><gpx version="1.0" creator="GPSLogger 106 - http://gpslogger.mendhak.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/0" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd"><time>2020-12-20T15:10:17.000Z</time><trk><trkseg><trkpt lat="50.7500114" lon="7.04261912"><ele>134.84075927734375</ele><time>2020-12-20T15:10:17.000Z</time><course>183.3</course><speed>0.42</speed><src>gps</src></trkpt>
+<trkpt lat="50.75025622" lon="7.04190707"><ele>116.29052734375</ele><time>2020-12-20T15:11:17.676Z</time><course>286.3</course><speed>1.26</speed><src>gps</src></trkpt>
+<trkpt lat="50.75026924" lon="7.04053158"><ele>131.78570556640625</ele><time>2020-12-20T15:12:18.862Z</time><course>266.9</course><speed>0.95</speed><src>gps</src></trkpt>
+<trkpt lat="50.75130439" lon="7.03959423"><ele>102.11676025390625</ele><time>2020-12-20T15:13:59.070Z</time><course>283.3</course><speed>1.24</speed><src>gps</src></trkpt>
+<trkpt lat="50.75202051" lon="7.03876592"><ele>123.8118896484375</ele><time>2020-12-20T15:15:03.465Z</time><course>354.0</course><speed>0.84</speed><src>gps</src></trkpt>
+<trkpt lat="50.7524543" lon="7.0380624"><ele>116.89068603515625</ele><time>2020-12-20T15:16:04.651Z</time><course>16.3</course><speed>1.5</speed><src>gps</src></trkpt>
+<trkpt lat="50.75325477" lon="7.03821979"><ele>115.123779296875</ele><time>2020-12-20T15:17:05.881Z</time><course>7.0</course><speed>1.61</speed><src>gps</src></trkpt>
+<trkpt lat="50.75466066" lon="7.03843092"><ele>106.4576416015625</ele><time>2020-12-20T15:18:43.000Z</time><course>23.5</course><speed>1.51</speed><src>gps</src></trkpt>
+<trkpt lat="50.75556573" lon="7.03914445"><ele>120.4296875</ele><time>2020-12-20T15:20:05.927Z</time><course>41.9</course><speed>1.38</speed><src>gps</src></trkpt>
+<trkpt lat="50.75620749" lon="7.04032109"><ele>120.54803466796875</ele><time>2020-12-20T15:21:32.898Z</time><course>52.4</course><speed>1.02</speed><src>gps</src></trkpt>
+<trkpt lat="50.75746119" lon="7.03986362"><ele>117.475341796875</ele><time>2020-12-20T15:23:05.926Z</time><course>309.6</course><speed>1.3</speed><src>gps</src></trkpt>
+<trkpt lat="50.75770013" lon="7.03845817"><ele>126.526611328125</ele><time>2020-12-20T15:24:07.130Z</time><course>298.0</course><speed>1.64</speed><src>gps</src></trkpt>
+<trkpt lat="50.75776484" lon="7.0372719"><ele>79.2239990234375</ele><time>2020-12-20T15:25:08.337Z</time><course>258.2</course><speed>1.47</speed><src>gps</src></trkpt>
+<trkpt lat="50.7570722" lon="7.03612968"><ele>110.69476318359375</ele><time>2020-12-20T15:26:31.234Z</time><course>197.9</course><speed>1.8</speed><src>gps</src></trkpt>
+<trkpt lat="50.75636156" lon="7.03523353"><ele>99.9140625</ele><time>2020-12-20T15:27:32.458Z</time><course>215.3</course><speed>1.72</speed><src>gps</src></trkpt>
+<trkpt lat="50.75582754" lon="7.03592921"><ele>105.24847412109375</ele><time>2020-12-20T15:28:33.678Z</time><course>135.5</course><speed>2.11</speed><src>gps</src></trkpt>
+<trkpt lat="50.75480622" lon="7.03741892"><ele>115.199462890625</ele><time>2020-12-20T15:30:05.550Z</time><course>154.6</course><speed>1.15</speed><src>gps</src></trkpt>
+<trkpt lat="50.75390267" lon="7.0387632"><ele>130.731689453125</ele><time>2020-12-20T15:31:32.681Z</time><course>150.0</course><speed>1.18</speed><src>gps</src></trkpt>
+<trkpt lat="50.75306871" lon="7.04042483"><ele>111.79376220703125</ele><time>2020-12-20T15:33:18.739Z</time><course>138.7</course><speed>0.97</speed><src>gps</src></trkpt>
+<trkpt lat="50.75239344" lon="7.04089314"><ele>113.39898681640625</ele><time>2020-12-20T15:34:21.000Z</time><course>88.9</course><speed>0.88</speed><src>gps</src></trkpt>
+<trkpt lat="50.75156388" lon="7.04167678"><ele>115.93060302734375</ele><time>2020-12-20T15:35:32.853Z</time><course>186.5</course><speed>1.28</speed><src>gps</src></trkpt>
+<trkpt lat="50.75095177" lon="7.04233361"><ele>110.4320068359375</ele><time>2020-12-20T15:36:34.106Z</time><course>172.9</course><speed>1.22</speed><src>gps</src><sat>18</sat></trkpt>
+</trkseg></trk></gpx>
