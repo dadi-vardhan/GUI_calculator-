@@ -1,6 +1,6 @@
 from Uncertain import MarkovChainMonteCarloSampler
 
-class Sampler:
+class Sampler():
     def __init__(self):
         self.model = None
     def create(self,source):

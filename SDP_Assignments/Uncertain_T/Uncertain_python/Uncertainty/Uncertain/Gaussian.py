@@ -3,7 +3,7 @@ import numpy as np
 import random
 import sys
 
-class Gaussian:
+class Gaussian():
     def __init__(self,mu,std):
         self.mean = mu
         self.std = std
