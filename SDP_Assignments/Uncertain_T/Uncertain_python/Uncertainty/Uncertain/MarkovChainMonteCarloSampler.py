@@ -2,7 +2,7 @@ import numpy as np
 import random
 import sys
 
-class MarkovChainMonteCarloSampler:
+class MarkovChainMonteCarloSampler():
     
     def __init__(self,source):
         self.source = source

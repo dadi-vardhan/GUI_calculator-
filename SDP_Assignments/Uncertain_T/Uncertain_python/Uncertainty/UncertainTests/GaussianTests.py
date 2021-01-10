@@ -1,6 +1,9 @@
 import numpy as np 
 import random
-import sys
+import sys,os
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
 from Uncertain.Gaussian import Gaussian
 from Uncertain.ISampler import Sampler
 
@@ -38,7 +41,6 @@ class GaussianTests():
             sum=sum+i
         sum = sum/100.0
         assert(sum>=4.11 and sum <=5.89)
-
 
 if __name__ == '__main__':
     test = GaussianTests()
