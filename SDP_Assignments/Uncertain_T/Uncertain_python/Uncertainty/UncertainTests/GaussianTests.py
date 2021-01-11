@@ -42,6 +42,16 @@ class GaussianTests():
         sum = sum/100.0
         assert(sum>=4.11 and sum <=5.89)
 
+    def Gaussian_Bernoulli_Conditional(self):
+        x = Gaussian(1.0,1.0)
+        y = Gaussian(3.0,2.0)
+        z = x>y
+        sampler = Sampler().create(z)
+        k=0
+        for i in sampler.Take(100):
+            if i<0:
+                k=k+1
+        assert (k>=13 and k<52)
 if __name__ == '__main__':
     test = GaussianTests()
     test.Gaussian_sample
