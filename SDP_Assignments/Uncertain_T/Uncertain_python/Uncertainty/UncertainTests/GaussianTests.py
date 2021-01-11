@@ -42,7 +42,7 @@ class GaussianTests():
         sum = sum/100.0
         assert(sum>=4.11 and sum <=5.89)
 
-    def Gaussian_Bernoulli_Conditional(self):
+    def Gaussian_Bernoulli_Mean(self):
         x = Gaussian(1.0,1.0)
         y = Gaussian(3.0,2.0)
         z = x>y
@@ -57,4 +57,4 @@ if __name__ == '__main__':
     test.Gaussian_sample
     test.Gaussian_mean
     test.Gaussian_BNN_sample
-    test.Gaussian_BNN_Mean
+    test.Gaussian_Bernoulli_Mean
