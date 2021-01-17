@@ -4,6 +4,7 @@
 #include <math.h>
 #include <random>
 #include "MarkovChainMonteCarloSampler.h"
+#include "uncertain.h"
 
 #ifndef ISAMPLER
 #define ISAMPLER 
@@ -17,12 +18,17 @@ class Sampler : public MarkovChainMonteCarloSampler {
     public:
         float* model; 
         Sampler(); 
+        ~Sampler();
         float* create(float* distrib,int size);
         float* take(int size); 
+
 
 };
 
 Sampler::Sampler(): MarkovChainMonteCarloSampler(){}
+Sampler::~Sampler(){
+    // delete[] this->distribution;
+}
 
 float* Sampler::create(float* distrib,int size){
 

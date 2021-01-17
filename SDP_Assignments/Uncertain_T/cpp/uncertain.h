@@ -17,14 +17,11 @@ class Uncertain{
         //copy constructor
         template<class Q> Uncertain(const Q &x){
 
-                Q tmp = x; 
+                Q tmp = x;
                 distribution = new T[NUM_OF_SAMPLES];
                 for (int i=0; i < NUM_OF_SAMPLES; i++ ){
                 *(this->distribution+i) = tmp.GetSample() ;}
                 this->histogram();
-                
-                
-                
                 }
         // }
 
@@ -36,41 +33,58 @@ class Uncertain{
                 // copy(std::begin(x.dist()), end(x.dist()), begin(this->distribution));
                 // *(this->distribution) = *(x.dist(this->distribution));
         // };
+        
         T* distribution;
         T pr(T x);
         T* arr; 
         T* prob_distribution;
         T smallest(T* arr, int n) ;
         T largest(T* arr, int n) ;
-        
+        T probability(T p=0); 
         T e();  
         void histogram(); 
         Uncertain<T> operator+(Uncertain<T>);
         Uncertain<T> operator-(Uncertain<T>);
         Uncertain<T> operator*(Uncertain<T>);
         Uncertain<T> operator/(Uncertain<T>);
+        Uncertain<T> operator>(Uncertain<T>);
+        Uncertain<T> operator>=(Uncertain<T>);
+        Uncertain<T> operator<(Uncertain<T>);
+        Uncertain<T> operator<=(Uncertain<T>);
+        Uncertain<T> operator==(Uncertain<T>);
+        Uncertain<T> operator!=(Uncertain<T>);
         template<typename Q> void operator=(Q x);
         template<typename Q> bool operator>(Q);
         template<typename Q> bool operator>=(Q);
         template<typename Q> bool operator<(Q);
         template<typename Q> bool operator<=(Q);
         template<typename Q> bool operator==(Q);
-
+        ~Uncertain(); 
 };
+
+
+template<typename T>
+Uncertain<T>::~Uncertain(){
+    // this->distribution = new T[NUM_OF_SAMPLES];
+    // delete[] distribution;
+    // this->histogram();
+}
+
+
 
 template<typename T>
 Uncertain<T>::Uncertain(){
-    distribution = new T[NUM_OF_SAMPLES];
-    // this->histogram();
+    this->distribution = new T[NUM_OF_SAMPLES];
+    this->histogram();
 }
 template<typename T>
 Uncertain<T>::Uncertain(T constant, T constant2){
-    distribution = new T[NUM_OF_SAMPLES];
+    this->distribution = new T[NUM_OF_SAMPLES];
     for(int i=0; i<NUM_OF_SAMPLES; i++){
         *(distribution + i) = constant; 
         // this->histogram();
     }
-    // this->histogram();
+    this->histogram();
 }
 
 template<typename T>
@@ -78,8 +92,7 @@ template<typename Q> bool Uncertain<T>::operator>(Q x){
 
     bool result = true; 
 
-    
-    
+
     float probability_sum= 0.0; 
     for (int i=0; i<NUM_OF_SAMPLES; i++){
 
@@ -113,6 +126,17 @@ template<typename Q> bool Uncertain<T>::operator>(Q x){
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
 // template<typename T>
 // template<typename Q> void Uncertain<T>::operator=(Q x){
 
@@ -125,7 +149,7 @@ T Uncertain<T>::e(){
 
     T ev = 0.0; 
 
-    for(int i=0; i < SET_SIZE; i++){
+    for(int i=0; i < NUM_OF_SAMPLES; i++){
 
         // cout <<this->pr(this->distribution[i]) << "*" << this->distribution[i] <<( this->pr(this->distribution[i])*this->distribution[i]) << endl; 
 
@@ -350,6 +374,105 @@ Uncertain<T> Uncertain<T>::operator/(Uncertain<T> aso) {
 }
 
 template<typename T>
+Uncertain<T> Uncertain<T>::operator>(Uncertain<T> aso) {
+
+    // distribution = this->gaussian();
+    // aso.distribution = aso.gaussian();
+
+    Uncertain<T> brandnew; 
+    
+    for (int i=0; i<NUM_OF_SAMPLES; i++){
+        brandnew.distribution[i] = (this->distribution[i] > aso.distribution[i]);
+    }
+    // brandnew.histogram();
+
+    return(brandnew);
+}
+
+template<typename T>
+Uncertain<T> Uncertain<T>::operator<(Uncertain<T> aso) {
+
+    // distribution = this->gaussian();
+    // aso.distribution = aso.gaussian();
+
+    Uncertain<T> brandnew; 
+    
+    for (int i=0; i<NUM_OF_SAMPLES; i++){
+        brandnew.distribution[i] = (this->distribution[i] < aso.distribution[i]);
+    }
+    // brandnew.histogram();
+
+    return(brandnew);
+}
+
+template<typename T>
+Uncertain<T> Uncertain<T>::operator>=(Uncertain<T> aso) {
+
+    // distribution = this->gaussian();
+    // aso.distribution = aso.gaussian();
+
+    Uncertain<T> brandnew; 
+    
+    for (int i=0; i<NUM_OF_SAMPLES; i++){
+        brandnew.distribution[i] = (this->distribution[i] >= aso.distribution[i]);
+    }
+    // brandnew.histogram();
+
+    return(brandnew);
+}
+
+template<typename T>
+Uncertain<T> Uncertain<T>::operator<=(Uncertain<T> aso) {
+
+    // distribution = this->gaussian();
+    // aso.distribution = aso.gaussian();
+
+    Uncertain<T> brandnew; 
+    
+    for (int i=0; i<NUM_OF_SAMPLES; i++){
+        brandnew.distribution[i] = (this->distribution[i] <= aso.distribution[i]);
+    }
+    // brandnew.histogram();
+
+    return(brandnew);
+}
+
+
+template<typename T>
+Uncertain<T> Uncertain<T>::operator==(Uncertain<T> aso) {
+
+    // distribution = this->gaussian();
+    // aso.distribution = aso.gaussian();
+
+    Uncertain<T> brandnew; 
+    
+    for (int i=0; i<NUM_OF_SAMPLES; i++){
+        brandnew.distribution[i] = (this->distribution[i] == aso.distribution[i]);
+    }
+    // brandnew.histogram();
+
+    return(brandnew);
+}
+
+template<typename T>
+Uncertain<T> Uncertain<T>::operator!=(Uncertain<T> aso) {
+
+    // distribution = this->gaussian();
+    // aso.distribution = aso.gaussian();
+
+    Uncertain<T> brandnew; 
+    
+    for (int i=0; i<NUM_OF_SAMPLES; i++){
+        brandnew.distribution[i] = (this->distribution[i] != aso.distribution[i]);
+    }
+    // brandnew.histogram();
+
+    return(brandnew);
+}
+
+
+
+template<typename T>
 T Uncertain<T>::largest(T* arr, int n) 
 { 
     int i; 
@@ -467,7 +590,20 @@ void Uncertain<T>::histogram(){
     }
 
 
+template<typename T>
+T Uncertain<T>::probability(T p){
 
+float count = 0.0; 
+for (int i=0; i<NUM_OF_SAMPLES; i++){
+
+    if(this->distribution[i] > p){
+        count++ ; 
+    }
+}
+
+return count/NUM_OF_SAMPLES;
+
+}
 
 
 
