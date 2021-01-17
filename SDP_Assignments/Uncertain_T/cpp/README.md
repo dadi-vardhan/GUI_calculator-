@@ -16,9 +16,8 @@ Objective: to sample from a gaussian distribution and implement logical and math
 
 ```cpp
 #include <iostream>
-#include "uncertain.h"
 #include "gaussian.h"
-#include "ISampler.h"
+
 
 using namespace std; 
 
