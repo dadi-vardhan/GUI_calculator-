@@ -15,6 +15,7 @@ void gaussian_sample(){
     float* test = s.create(x.distribution,NUM_OF_SAMPLES); 
     for(int i=0; i<100; i++){
         cout << (test[i] >= -3 && test[i <= 13]) << endl; 
+        if (!(test[i] >= -3 && test[i <= 13]) ){cout << "break" << endl; break;}
     }
 
 }
@@ -31,6 +32,10 @@ void gaussian_mean(){
 
     sum_value = sum_value/NUM_OF_SAMPLES ; 
     cout << (sum_value >= 4.6 && sum_value <= 5.4) << endl; 
+    if(!(sum_value >= 4.6 && sum_value <= 5.4)) {
+        cout << "break" << endl; 
+       
+    }
 
 }
 
@@ -152,19 +157,12 @@ int main(){
 
     Uncertain<float> x = Gaussian(11,0.03);
     Uncertain<float> y = Gaussian(10,0.04);
-    // Uncertain<float> z = y+x;
-
-    // for(int i=0; i< 6; i++){
-    // cout << z.distribution[i] << endl;
-        // n = h+m; 
-    // }
 
 
     gaussian_sample();
     gaussian_mean();
     gaussian_bnn_sample();
     gaussian_bnn_mean();
-
     gaussian_bernoulli_mean();
     gaussian_bernoulli_conditional();
 
