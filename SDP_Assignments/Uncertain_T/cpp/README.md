@@ -16,9 +16,8 @@ Objective: to sample from a gaussian distribution and implement logical and math
 
 ```cpp
 #include <iostream>
-#include "uncertain.h"
 #include "gaussian.h"
-#include "ISampler.h"
+
 
 using namespace std; 
 
@@ -35,6 +34,8 @@ Uncertain<float> z = x + y;
 cout << (z >= 4.7 ) << endl; 
 cout << (z <= 5.3) << endl; 
 
+return 0; 
+
 }
 
 ```
@@ -43,7 +44,12 @@ cout << (z <= 5.3) << endl;
 
 You can find a useful test case that is "Game of Life" Algorithim [here](https://github.com/dadi-vardhan/SDP/tree/master/SDP_Assignments/Game_of_life/game_of_life_Hammam). In Game of Life, a sensor is used to measure whether the surrounding points are alive or dead. In our case the sensor is noise. These values are simulated using our uncertain<T> package. Using our package, we were able to successfully tolerate the noise coming from the sensor measurements. 
     
-## How does work? 
+## How does it work? 
 The following UML diagram describes the structure of the current Uncertain<T> library. 
     
 ![alt text](https://raw.githubusercontent.com/dadi-vardhan/SDP/master/SDP_Assignments/Uncertain_T/cpp/UML.png)
+
+
+# References 
+
+[1]J. Bornholt, T. Mytkowicz, and K. S. McKinley, “Uncertain : A First-Order Type for Uncertain Data,” in Proceedings of the 19thinternational conference on Architectural support for programminglanguages and operating systems, New York, NY, USA, Feb. 2014,pp. 51–66, doi: 10.1145/2541940.2541958.
