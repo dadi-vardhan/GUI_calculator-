@@ -45,7 +45,7 @@ return 0;
 
 You can find a useful test case that is "Game of Life" Algorithim [here](https://github.com/dadi-vardhan/SDP/tree/master/SDP_Assignments/Game_of_life/game_of_life_Hammam). In Game of Life, a sensor is used to measure whether the surrounding points are alive or dead. In our case the sensor is noise. These values are simulated using our uncertain<T> package. Using our package, we were able to successfully tolerate the noise coming from the sensor measurements. 
     
-## How does work? 
+## How does it work? 
 The following UML diagram describes the structure of the current Uncertain<T> library. 
     
 ![alt text](https://raw.githubusercontent.com/dadi-vardhan/SDP/master/SDP_Assignments/Uncertain_T/cpp/UML.png)
