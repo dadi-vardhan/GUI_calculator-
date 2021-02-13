@@ -1,260 +1,124 @@
+#ifndef MCMC
+#define MCMC
+
 #include <iostream>
+#include "uncertain.h"
+#include "Gaussian.h"
+#include "Multinomial.h"
+#include <random>
+#include <math.h>
 #include <ctime>
 #include <cstdlib>
-#include <math.h>
-#include <random>
-#include "uncertain.h"
-#ifndef MoCMC
-#define MoCMC
+#include <vector>
 
-using namespace std;
+using namespace std; 
 
 
 
+template<typename T>
+T likelihood(T &mean,T &sigma, vector<T> &distrib){
 
-
-class MarkovChainMonteCarloSampler: public Uncertain<float>{
-    public: 
-        int size; 
-        float* new_distribution; 
-        int iterations = 5000; 
-        float mean(float* x, float s);
-        MarkovChainMonteCarloSampler();
-        ~MarkovChainMonteCarloSampler();
-        MarkovChainMonteCarloSampler(float* distrib, int s);
-        float prior(float* x); 
-        float random_normal(float mu, float sigma); 
-        float random_uniform(float a, float b); 
-        float* transition_model(float* x);
-        float likelihood(float* x, float* distrib); 
-        bool accept(float oldTrace, float trace); 
-        float* sampling();
-};
-
-MarkovChainMonteCarloSampler::MarkovChainMonteCarloSampler(){}
-MarkovChainMonteCarloSampler::~MarkovChainMonteCarloSampler(){
-}
-
-
-MarkovChainMonteCarloSampler::MarkovChainMonteCarloSampler(float* distrib, int s){
-
-    this->size = s; 
-    this->distribution = new float[size];
-    for(int i=0; i<size; i++){
-        *(distribution + i) = *(distrib + i); }
-
-    this->sampling(); 
-}
-
-float MarkovChainMonteCarloSampler::prior(float* x){
-    float p = 1;
-
-    if (*(x+1) <= 0){
-        p = 0; }
-
-    return p;
-}
-
-
-float MarkovChainMonteCarloSampler::random_normal(float mu, float sigma){
-
-    static const double epsilon = std::numeric_limits<double>::min();
-    static const double two_pi  = 2.0*3.141592653;
-
-    // thread_local double z1;
-    double z0,z1,mag;
-
-    double u1,u2;
-
-
-    do
-    {
-
-        u1 = this->random_uniform(0,1); 
-        u2 = this->random_uniform(0,1); 
-
-    }
-    while (u1 <= epsilon);
-
-    mag = sigma * sqrt(-2.0*log(u1));
-    z0 = mag * cos(two_pi * u2) + mu;
-    z1 = mag * sin(two_pi * u2) + mu;
-
-    float sample = (float) z1; 
-
-    return sample;
-
-}
-
-float MarkovChainMonteCarloSampler::random_uniform(float a, float b){
-    random_device generator; 
-	uniform_real_distribution<float> distribution(a,b);
-    float r = distribution(generator); 
-    return r; 
-}
-
-float* MarkovChainMonteCarloSampler::transition_model(float* x){
-    float* xx = new float[2]; 
-    xx[0] = x[0]; 
-    xx[1] = this->random_normal(*(x+1),0.5);
-
-    return xx; 
-}
-
-float MarkovChainMonteCarloSampler::likelihood(float* x, float* distrib){
-
-    float sum = 0.0; 
-    float a = 0.0;
-    float b = 0.0;
-    float c = 0.0; 
+    T a,b,c,sum; 
     //dont forget to change 3 into NUM_OF_SAMPLES
-    for(int i=0; i < NUM_OF_SAMPLES; i++){
-    a =  -log(x[1] * sqrt(2* M_PI) );
-    b = (distrib[i] - x[0])*(distrib[i] - x[0]);
-    c = 2*x[1]*x[1]; 
+    for(int i=0; i < distrib.size(); i++){
+    a =  -log(sigma * sqrt(2* M_PI) );
+    b = (distrib.at(i) - mean)*(distrib.at(i) - mean);
+    c = 2*sigma*sigma; 
     sum +=  a - (b/c);
     }
 
     return sum; 
-
 }
 
-bool MarkovChainMonteCarloSampler::accept(float oldTrace, float trace){
+      
+// float random_uniform(float a, float b){
+//     random_device generator; 
+// 	uniform_real_distribution<float> distribution(a,b);
+//     float r = distribution(generator); 
+//     return r; 
+// }
 
-    bool decision = false; 
-    if (trace > oldTrace){
 
-        decision = true; 
 
+template<typename T>
+Uncertain<T>* MarkovChainMonteCarlo(Uncertain<T>* source){
+
+    // cout << "This is gonna be interesting to build" << endl;
+    vector<T> samples;
+    vector<T> accepted; 
+    vector<T> rejected; 
+    T mean = 0.0;
+    T sigma = 0.05;
+    for(int i=0; i<10; i++){
+        samples.push_back(source->GetSupport());
+        mean += samples.at(i)/10;}
+
+    //initial guess is the mean of the provided samples
+    T current_sample = mean;
+    T current_sample_likelihood = likelihood(current_sample,sigma,samples);
+    //generate new sample and estimate it's likelihood
+    for(int i=0; i<100; i++){
+    T new_sample = current_sample + Gaussian(0.0,sigma).GetSample();
+    // T new_sigma = sigma + Gaussian(0.0,sigma).GetSample();
+    // cout << "Current Sample: " << current_sample << endl;
+    // cout << "Current Sample likelihood: " << current_sample_likelihood << endl;
+    T new_sample_likelihood = likelihood(new_sample,sigma,samples);
+
+    // cout << "New sample: " << new_sample << endl;
+    // cout << "new sample likelihood: " << new_sample_likelihood << endl; 
+
+    // calculate the acceptance ratio
+    T A = new_sample_likelihood/current_sample_likelihood;
+    float r = random_uniform(0.0,1.0);
+    if(A>1 || exp(new_sample_likelihood - current_sample_likelihood)){
+        current_sample = new_sample;
+        current_sample_likelihood = new_sample_likelihood;
+        accepted.push_back(new_sample);
+        // cout << "new sample accepted" << endl;
+    }else{
+
+        rejected.push_back(new_sample);
+        // cout << "new sample rejected" << endl;
     }
-    else{ 
-
-        float acceptance = this->random_uniform(0,1); 
-        if (acceptance < exp(trace-oldTrace)){
-            decision = true; 
-        }
-
-    }
-    return decision; 
-}
-
-
-
-float MarkovChainMonteCarloSampler::mean(float* x, float s){ 
-
-    float sum = 0.0; 
-
-    for(int i=0; i < s; i++){
-
-        sum += *(x+i); 
-    }
-
-    float mean = sum/s ; 
-
-    return mean; 
-
-}
-
-
-
-
-float* MarkovChainMonteCarloSampler::sampling(){
-
-float obs_mean = this->mean(this->distribution,size); 
-float x[2] = {obs_mean, 0.1}; 
-float* accepted_mean;
-accepted_mean = new float[3000]; 
-float* accepted_sigma; 
-accepted_sigma = new float[3000]; 
-float* x_new; 
-x_new = new float[2]; 
-float x_lik; 
-float x_new_lik; 
-float oldtrace; 
-float newtrace; 
-int count_accepted = 0; 
-float means_sum = 0.0; 
-float sigmas_sum = 0.0;
-
-for(int i=0; i<iterations; i++){
     
-    x_new = this->transition_model(x); 
-    x_lik = this->likelihood(x,this->distribution); 
-    x_new_lik = this->likelihood(x_new,this->distribution); 
-    oldtrace = x_lik + log(this->prior(x)); 
-    newtrace = x_new_lik + log(this->prior(x_new)); 
-    if(this->accept(oldtrace,newtrace)){
-        for(int i=0; i<2; i++){
-            *(x+i) = *(x_new +i); }
-
-
-        accepted_mean[count_accepted] = x_new[0];
-        accepted_sigma[count_accepted] = x_new[1];
-        means_sum += x_new[0]; 
-        sigmas_sum += x_new[1];
-
-        count_accepted += 1;
-
-
-        }
-
     }
+    vector<T> burnin; 
+    T new_mean = 0.0;
+    for(int i=round(accepted.size()*0.25); i < accepted.size(); i++){
+        burnin.push_back(accepted.at(i)); 
+        // cout << accepted.at(i) << endl; 
+        new_mean += accepted.at(i);
+    }
+    new_mean /= burnin.size();
 
-
-int burnin = (int)(0.75*count_accepted);
-
-int start = count_accepted - burnin;
-
-float mu = means_sum/count_accepted;
-float sigma = sigmas_sum/count_accepted;
-
-new_distribution = new float[NUM_OF_SAMPLES]; 
-
-for(int i=0; i<NUM_OF_SAMPLES; i++){
-    new_distribution[i] = this->random_normal(mu,sigma);
+    // cout << "new mean " <<new_mean << endl; 
+    list<T> tmp_burnin;
+    for(int i=0; i<burnin.size(); i++){
+        tmp_burnin.push_back(burnin.at(i));
+        // cout << "tmp burnin: " << burnin.at(i) << "| " ; 
+    }
+    // cout << endl;
+    // Uncertain<T>* brand_new_uncertain = new Gaussian(new_mean,sigma);
+    Uncertain<T>* brand_new_uncertain = new Multinomial(tmp_burnin);
+    // cout << "from inside mcmc " << brand_new_uncertain->GetSupport()<< endl;
+    // cout << "I should return the new uncertain" << endl; 
+    return brand_new_uncertain;
 }
 
 
-
-float* model;
-model = new float[2]; 
-model[0] = mu; 
-model[1] = sigma; 
-return model; 
-
-
-
-}
-
-
+#endif
 
 
 
 
 // int main(){
-//     cout << "test mcmc" << endl; 
-    
 
-//     float source[10] = {7,7.5,6.7,6.3,6.8,6.5,6,6.1,5.1,7}; 
-//     int size = (sizeof(source)/sizeof(source)[0]); 
+//     Uncertain<double> *x = new Gaussian(10,0.5);
+//     // MarkovChainMonteCarloSampler<double> s(x);
+//     // auto t = MarkovChainMonteCarlo(*x);
+//     Uncertain<double> *y = MarkovChainMonteCarlo(*x);
 
+//     cout << y->GetSupport() << endl; 
 
-//     // call sampler 
-//     MarkovChainMonteCarloSampler MCMC(source,size); 
-//     cout << "source size is " << MCMC.size << endl; 
-    
-
-//     // cout << MCMC.distribution[1] << endl; 
-//     // cout << MCMC.prior(params) << endl; 
-//     // cout <<"rand normal" << MCMC.random_normal(params[0],params[1]) << endl; 
-//     // cout << MCMC.transition_model(params)[1] << endl;
-//     // cout << MCMC.likelihood(params,source) << endl; 
-//     // cout << MCMC.random_uniform() << endl; 
-//     // cout << MCMC.accept(0.5,0.3) << endl; 
-//     cout << MCMC.sampling()[0] << endl;
-//     cout << MCMC.sampling()[1] << endl;
-
-//     return 0; 
+//     return 0;
 // }
-
-#endif
