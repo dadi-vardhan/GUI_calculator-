@@ -1,3 +1,4 @@
+![C/C++ CI](https://github.com/dadi-vardhan/SDP/workflows/C/C++%20CI/badge.svg)
 # Uncertain< T > in C++ 
 
 This is an implementation of the datatype Uncertain< T > as discussed in [1]. This data structure is developed in C++ language. 
