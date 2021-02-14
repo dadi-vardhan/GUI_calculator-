@@ -1,3 +1,4 @@
+![C/C++ CI](https://github.com/dadi-vardhan/SDP/workflows/C/C++%20CI/badge.svg)
 # Software Development Project
 
 This repository contains the course work for SDP class WiSe 2020/21 in Hochschule Bonn-Rhein-Sieg. 
