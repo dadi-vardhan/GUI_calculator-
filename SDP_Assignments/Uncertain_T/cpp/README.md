@@ -25,15 +25,43 @@ using namespace std;
 
 int main(){
     
-Uncertain<float> x = Gaussian(2,0.03);
-Uncertain<float> y = Gaussian(3,0.04);
+Uncertain<double>* x = new Gaussian(2,0.03);
+Uncertain<double>* y = new Gaussian(3,0.04);
 
-Uncertain<float> z = x + y; 
+Uncertain<double>* z = *x + *y; 
 
 //check if z's new mean in range of 5.3 and 4.7 
 
 cout << (z >= 4.7 ) << endl; 
 cout << (z <= 5.3) << endl; 
+
+
+// If you want to take 100 samples from the new distribution z
+
+Sampler<double> s; 
+s.Create(z); 
+vector<double> samples = s.Take(100);
+
+
+// Use Uncertain<T> to create Bernoulli distributions with a 0.6 probability
+
+Uncertain<double>* b = new Bernoulli(0.6);  
+
+
+// Or if you can find the distribution from which a set of samples come from 
+
+list<double> set_of_samples = {3.0,3.4,3.2,3.1,2.8,2.7,2.9};
+
+Uncertain<double>* distribution = new Multinomial(set_of_samples); 
+
+//To generate samples from the set above, our Sampler<T> will use Monte Carlo Markov Chain technique (Random Walk Metropolis Hasting). 
+
+Sampler<double> distribution; 
+s.Create(distribution); 
+vector<double> samples = s.Take(100);
+
+
+
 
 return 0; 
 
@@ -48,7 +76,7 @@ You can find a useful test case that is "Game of Life" Algorithim [here](https:/
 ## How does it work? 
 The following UML diagram describes the structure of the current Uncertain<T> library. 
     
-![alt text](https://raw.githubusercontent.com/dadi-vardhan/SDP/master/SDP_Assignments/Uncertain_T/cpp/UML.png)
+![alt text](https://github.com/dadi-vardhan/SDP/raw/master/SDP_Assignments/Uncertain_T/cpp/UML.png)
 
 
 # References 
