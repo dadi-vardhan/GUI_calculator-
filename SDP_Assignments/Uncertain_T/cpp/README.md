@@ -11,13 +11,17 @@ The idea is to create a datatype which implements first order uncertainty. On an
 
 This is a simplified version of the actual code in c# described [here](https://github.com/klipto/Uncertainty/tree/dev/Uncertain). However, this simplified structure is capable of performing successfully in a probabilistic fashion. As progress continues, more distributions will be added to the package. 
 
+## Install Uncertain< T > 
+
+Simply by copying the `Uncertain_t.h` file along with `Uncertain` folder. Please keep in mind that both should be in the same directory. 
+
 # Example 
 
 Objective: to sample from a gaussian distribution and implement logical and mathematical operations. 
 
 ```cpp
 #include <iostream>
-#include "gaussian.h"
+#include "uncertain_t.h"
 
 
 using namespace std; 
@@ -72,6 +76,7 @@ return 0;
 # Test Case 
 
 You can find a useful test case that is "Game of Life" Algorithim [here](https://github.com/dadi-vardhan/SDP/tree/master/SDP_Assignments/Game_of_life/game_of_life_Hammam). In Game of Life, a sensor is used to measure whether the surrounding points are alive or dead. In our case the sensor is noise. These values are simulated using our uncertain<T> package. Using our package, we were able to successfully tolerate the noise coming from the sensor measurements. 
+    
     
 ## How does it work? 
 The following UML diagram describes the structure of the current Uncertain<T> library. 
