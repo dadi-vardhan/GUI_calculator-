@@ -20,8 +20,6 @@ class GaussianTests():
             assert(i >= -3 and i <= 13)
 
     def gaussian_mean(self):
-        """[summary]
-        """
         sum_value = 0.0
         x = Gaussian(5.0,1.0)
         x=x.get_support()

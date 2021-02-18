@@ -7,7 +7,7 @@ class Gaussian():
     def __init__(self,mu,std):
         self.mean = mu
         self.std = std
-        self.samples = 1000
+        self.SAMPLES = 1000
 
     def get_samples(self):
         """[Creates random gaussian samples with mean and
@@ -17,7 +17,7 @@ class Gaussian():
             
             function.]
         """
-        return np.random.normal(self.mean,self.std,self.samples)
+        return np.random.normal(self.mean,self.std,self.SAMPLES)
         
 
     def get_support(self):

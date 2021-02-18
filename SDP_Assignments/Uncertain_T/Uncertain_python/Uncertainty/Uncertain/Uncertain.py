@@ -3,6 +3,10 @@ from Uncertain.MarkovChainMonteCarloSampler import MarkovChainMonteCarloSampler
 from Uncertain.Flip import Flip
 
 class Operator():
+    """[Class that implements operation overloading
+    Implemented operators : '+','-','*','/'
+                            '<','>','<=','>=']
+    """
     def __init__(self, val):
         self.val = val.get_support()
 
