@@ -1,5 +1,6 @@
 import numpy as np
 from Uncertain.MarkovChainMonteCarloSampler import MarkovChainMonteCarloSampler
+from Uncertain.Flip import Flip
 
 class Operator():
     def __init__(self, val):
@@ -32,7 +33,7 @@ class Operator():
         lst = mcmc.mcmc_sampler()
         return lst
     
-    def __truediv(self,other):
+    def __truediv__(self,other):
         self_val = np.array(self.val)
         other_val = np.array(other.val)
         lst = list(self_val/other_val)
@@ -48,7 +49,8 @@ class Operator():
         lst= self_val < other_val
         dist = list(zeros_holder+lst)
         prob = dist.count(1)/len(dist)
-        lst = self.flip(prob,len(dist))
+        lst = Flip(prob,len(dist))
+        lst = lst.get_support()
         return lst
     
     def __le__(self,other):
@@ -58,7 +60,8 @@ class Operator():
         lst= self_val <= other_val
         dist = list(zeros_holder+lst)
         prob = dist.count(1)/len(dist)
-        lst = self.flip(prob,len(dist))
+        lst = Flip(prob,len(dist))
+        lst = lst.get_support()
         return lst
 
     
@@ -69,7 +72,8 @@ class Operator():
         lst= self_val > other_val
         dist = list(zeros_holder+lst)
         prob = dist.count(1)/len(dist)
-        lst = self.flip(prob,len(dist))
+        lst = Flip(prob,len(dist))
+        lst = lst.get_support()
         return lst
 
     def __ge__(self,other):
@@ -79,12 +83,6 @@ class Operator():
         lst= self_val >= other_val
         dist = list(zeros_holder+lst)
         prob = dist.count(1)/len(dist)
-        lst = self.flip(prob,len(dist))
-        return lst
-    
-    def flip(self,prob,dist_len):
-        lst=[]
-        for i in range(dist_len):
-            random_prob = np.random.uniform(0.0,1.0)
-            lst.append(int(random_prob<prob))
+        lst = Flip(prob,len(dist))
+        lst = lst.get_support()
         return lst

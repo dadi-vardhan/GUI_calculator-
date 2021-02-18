@@ -8,7 +8,7 @@ sys.path.append(parentdir)
 from Uncertain.Gaussian import Gaussian
 from Uncertain.Sampler import Sampler
 from Uncertain.Extensions import Extensions 
-from Uncertain.uncertain import Operator 
+from Uncertain.Uncertain import Operator 
 
 class GaussianTests():
     def gaussian_sample(self):
@@ -84,8 +84,8 @@ class GaussianTests():
 
 if __name__ == '__main__':
     test = GaussianTests()
-    #test.gaussian_sample()
-    #test.gaussian_mean()
+    test.gaussian_sample()
+    test.gaussian_mean()
     test.gaussian_bnn_sample()
     test.gaussian_bnn_mean()
     test.gaussian_bernoulli_mean()

@@ -28,13 +28,11 @@ class Extensions():
         li = s.take(10)
         count = 0.0
         for i in li:
-            #print("first_for loop done")
             if i>=0.5:
                 count=count+1
         count = count/len(li)
         num_samples=0
         while (num_samples<init_sample_size):
-            #print("second_while loop done")
             if li[num_samples]>0.5:
                 k=k+1
                 w_sum_true=w_sum_true+count
@@ -42,7 +40,6 @@ class Extensions():
             num_samples+=1
         test = None
         while (numm_samples<= max_samples):
-            #print(" loop done")
             log_likelihood = w_sum_true * np.log(H_1/H_0)+(w_sum-w_sum_true)*np.log((1-H_1)/(1-H_0))
             
             if (log_likelihood>=b):

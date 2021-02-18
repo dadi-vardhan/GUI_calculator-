@@ -2,7 +2,6 @@ import numpy as np
 import random
 import sys
 
-from numpy.lib.utils import source
 
 class MarkovChainMonteCarloSampler():
     
@@ -29,8 +28,6 @@ class MarkovChainMonteCarloSampler():
             return (accept < (np.exp(trace-oldTrace)))
         
     def mcmc_sampler(self):
-        #samples = self.source.get_support()
-        # print(samples)
         obs_mean = np.mean(self.source)
         x = [obs_mean,0.1]
         accepted = []
