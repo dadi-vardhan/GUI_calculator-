@@ -1,24 +1,24 @@
 
-import numpy as np 
+import numpy as np
 import random
 import sys
 
+
 class Gaussian():
-    def __init__(self,mu,std):
+    def __init__(self, mu, std):
         self.mean = mu
         self.std = std
         self.SAMPLES = 1000
 
     def get_samples(self):
         """[Creates random gaussian samples with mean and
-            standard deviation. Uses 
+            standard deviation. Uses
 
-            numpy.random.normal(mean,std,num_samples) 
-            
+            numpy.random.normal(mean,std,num_samples)
+
             function.]
         """
-        return np.random.normal(self.mean,self.std,self.SAMPLES)
-        
+        return np.random.normal(self.mean, self.std, self.SAMPLES)
 
     def get_support(self):
         """[Fucniton to return the gaussiann samples created.]
@@ -28,5 +28,3 @@ class Gaussian():
         """
         samples = self.get_samples()
         return samples
-        
-    

@@ -1,21 +1,22 @@
 import numpy as np
 
+
 class Flip:
-    def __init__(self,prob,dist_len):
+    def __init__(self, prob, dist_len):
         self.prob = prob
         self.dist_len = dist_len
-    
+
     def get_samples(self):
-        """ 
+        """
         Function to check the probability of flip
 
         Returns:
             1-D numppy array : array of samples
         """
-        lst=[]
+        lst = []
         for i in range(self.dist_len):
-            random_prob = np.random.uniform(0.0,1.0)
-            lst.append(int(random_prob<self.prob))
+            random_prob = np.random.uniform(0.0, 1.0)
+            lst.append(int(random_prob < self.prob))
         return lst
 
     def get_support(self):
@@ -27,6 +28,3 @@ class Flip:
         """
         samples = self.get_samples()
         return samples
-
-
-   
