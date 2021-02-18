@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: python gaussain test check
-    - run: python3 GaussianTests.py
+    - run: python3 SDP_Assignments/Uncertain_T/Uncertain_python/Uncertainty/UncertainTests/UncerGaussianTests.py
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
