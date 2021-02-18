@@ -8,8 +8,25 @@ class Gaussian():
         self.mean = mu
         self.std = std
         self.samples = 1000
+
+    def get_samples(self):
+        """[Creates random gaussian samples with mean and
+            standard deviation. Uses 
+
+            numpy.random.normal(mean,std,num_samples) 
+            
+            function.]
+        """
+        return np.random.normal(self.mean,self.std,self.samples)
         
-    def gaussian(self):
-        population = np.random.normal(self.mean,self.std,self.samples)
-        return population
+
+    def get_support(self):
+        """[Fucniton to return the gaussiann samples created.]
+
+        Returns:
+            [1-D numpy array]: [Gaussian samples]
+        """
+        samples = self.get_samples()
+        return samples
+        
     

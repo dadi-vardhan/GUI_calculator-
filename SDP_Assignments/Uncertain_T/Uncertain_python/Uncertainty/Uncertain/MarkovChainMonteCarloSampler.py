@@ -2,6 +2,8 @@ import numpy as np
 import random
 import sys
 
+from numpy.lib.utils import source
+
 class MarkovChainMonteCarloSampler():
     
     def __init__(self,source):
@@ -26,7 +28,9 @@ class MarkovChainMonteCarloSampler():
             accept=np.random.uniform(0,1)
             return (accept < (np.exp(trace-oldTrace)))
         
-    def MarkovChainMonteCarloSampler(self):
+    def mcmc_sampler(self):
+        #samples = self.source.get_support()
+        # print(samples)
         obs_mean = np.mean(self.source)
         x = [obs_mean,0.1]
         accepted = []
@@ -42,9 +46,7 @@ class MarkovChainMonteCarloSampler():
                 accepted.append(x_new)
             else:
                 rejected.append(x_new)  
-        accepted = np.array(accepted)      
-        burnin=int(-0.75*accepted.shape[0])
-        mu=accepted[burnin:,0].mean()
-        sigma=accepted[burnin:,1].mean()
-        model = np.random.normal(mu,sigma,self.source.shape)
-        return model
+        mean = accepted[0][0]
+        std = accepted[-1][-1]
+        new_dist = np.random.normal(mean,std,100)
+        return new_dist
