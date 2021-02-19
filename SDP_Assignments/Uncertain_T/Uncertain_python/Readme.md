@@ -1,4 +1,6 @@
 # Uncertain<T> library
+	
+[![Python application](https://github.com/dadi-vardhan/SDP/actions/workflows/python-app.yml/badge.svg)](https://github.com/dadi-vardhan/SDP/actions/workflows/python-app.yml)
 
 ## Table of contents
 * [General info](#general-info)
