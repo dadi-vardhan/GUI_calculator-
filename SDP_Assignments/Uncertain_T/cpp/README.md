@@ -60,7 +60,7 @@ Uncertain<double>* distribution = new Multinomial(set_of_samples);
 
 //To generate samples from the set above, our Sampler<T> will use Monte Carlo Markov Chain technique (Random Walk Metropolis Hasting). 
 
-Sampler<double> distribution; 
+Sampler<double> s; 
 s.Create(distribution); 
 vector<double> samples = s.Take(100);
 
