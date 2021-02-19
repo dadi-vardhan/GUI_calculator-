@@ -17,6 +17,9 @@ class Extensions():
     def pr(self, source):
         """[Implements wald's likelihood ratio test.]
 
+        Args:
+            source ([list]): [distribution samples]
+
         Returns:
             [bool]: [returns True or False]
         """
