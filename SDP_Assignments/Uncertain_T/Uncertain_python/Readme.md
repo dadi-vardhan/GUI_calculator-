@@ -4,14 +4,15 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Technologies](#technologies)
+* [Tools and Libraries](#technologies)
 * [Setup](#setup)
+* [UML diagram](#UML digram)
 
 ## General info
 A programming langauage abstraction for Uncertain data. This package is a python porting from a already existing c# implementation of [Uncertain<T>](https://github.com/klipto/Uncertainty) library.
   
 	
-## Technologies
+## Tools and Libraries
 Project is created with:
 * Python version: 3.x
 * numpy version: 1.18.x
@@ -34,3 +35,6 @@ To run the test cases run:
 $ cd ~/Uncertain_python
 $ python /UncertainTests/GaussianTests.py
 ```
+## UML digram 
+
+![Algorithm schema](UML_diagram.png)
