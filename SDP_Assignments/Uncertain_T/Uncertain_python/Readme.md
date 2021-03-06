@@ -22,7 +22,7 @@ Project is created with:
 To run this project, install it locally using pip:
 
 ```
-$ pip install uncetaint-sdp-python
+$ pip install uncertaint-sdp-python
 ```
 To install numpy and scipy run:
 
