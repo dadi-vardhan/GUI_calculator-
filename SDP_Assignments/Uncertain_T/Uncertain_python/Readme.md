@@ -37,9 +37,17 @@ $ python /UncertainTests/GaussianTests.py
 # pytest -v 
 ```
 
+Usage of the library:
+
 ```python
 import uncetaint-sdp-python
 from uncertain-sdp-python.Uncertain.Gaussian import Gaussian
+from uncertain-sdp-python.Uncertain import Operator
+
+distribution_1 = Gaussian(1.0,2.0)
+distribution_2 = Gaussian(2.0,4.0)
+
+sum_distribution = Operator(distribution_1)+Operator(distribution_2)
 
 ```
 ## UML diagram 
