@@ -37,10 +37,11 @@ $ python /UncertainTests/GaussianTests.py
 # pytest -v 
 ```
 
-'''python
+```python
 import uncetaint-sdp-python
+from uncertain-sdp-python.Uncertain.Gaussian import Gaussian
 
-'''
+```
 ## UML diagram 
 
 ![Algorithm schema](UML_diagram.png)
