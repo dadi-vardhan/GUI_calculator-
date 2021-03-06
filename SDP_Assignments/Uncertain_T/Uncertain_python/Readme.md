@@ -22,7 +22,7 @@ Project is created with:
 To run this project, install it locally using pip:
 
 ```
-$ pip install xxxx
+$ pip install uncetaint-sdp-python
 ```
 To install numpy and scipy run:
 
@@ -34,7 +34,13 @@ To run the test cases run:
 ```
 $ cd ~/Uncertain_python
 $ python /UncertainTests/GaussianTests.py
+# pytest -v 
 ```
+
+'''python
+import uncetaint-sdp-python
+
+'''
 ## UML diagram 
 
 ![Algorithm schema](UML_diagram.png)
