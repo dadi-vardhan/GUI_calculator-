@@ -22,7 +22,7 @@ Project is created with:
 To run this project, install it locally using pip:
 
 ```
-$ pip install uncertaint-sdp-python
+$ pip install UncertainPythonSDP==0.1.0
 ```
 To install numpy and scipy run:
 
@@ -40,9 +40,9 @@ $ python /UncertainTests/GaussianTests.py
 Usage of the library:
 
 ```python
-import uncetaint-sdp-python
-from uncertain-sdp-python.Uncertain.Gaussian import Gaussian
-from uncertain-sdp-python.Uncertain import Operator
+import UncertainPythonSDP
+from UncertainPythnSDP.Uncertain.Gaussian import Gaussian
+from UncertainPythnSDP.Uncertain.Uncertain import Operator
 
 distribution_1 = Gaussian(1.0,2.0)
 distribution_2 = Gaussian(2.0,4.0)
