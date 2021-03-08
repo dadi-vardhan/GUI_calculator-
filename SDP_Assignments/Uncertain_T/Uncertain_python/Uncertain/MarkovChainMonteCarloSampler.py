@@ -44,7 +44,7 @@ class MarkovChainMonteCarloSampler():
             data ([list]): [data sampled from a distribution.]
 
         Returns:
-            [type]: [description]
+            [float]: [likelihood]
         """
         return np.sum(-np.log(x[1] * np.sqrt(2 * np.pi)) -
                       ((data - x[0])**2) / (2 * x[1]**2))

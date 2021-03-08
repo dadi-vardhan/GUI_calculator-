@@ -1,0 +1,20 @@
+.
+
+├── __init__.py
+├── LICENSE
+├── Readme.md
+├── UML_diagram.png
+├── Uncertain
+│   ├── Extensions.py
+│   ├── Flip.py
+│   ├── Gaussian.py
+│   ├── __init__.py
+│   ├── MarkovChainMonteCarloSampler.py
+│   ├── Sampler.py
+│   └── Uncertain.py
+└── UncertainTests
+    ├── __init__.py
+    ├── Readme.md
+    └── test_GaussainTests.py
+
+2 directories, 14 files
