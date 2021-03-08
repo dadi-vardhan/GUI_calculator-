@@ -9,6 +9,7 @@
 #include "Sampler.h"
 // #include "RandomPrimitive.h"
 #include "MarkovChainMonteCarloSampler.h"
+#include <vector>
 
 
 
@@ -89,6 +90,132 @@ Uncertain<T>* operator<=(Uncertain<T>& obj,Uncertain<T>& obj2){
     Uncertain<T>* new_uncertain = new Flip(count/10);
     return new_uncertain;
     }
+
+template<typename T>
+double E(Uncertain<T>& obj){
+
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(25);
+    double e = accumulate(samples.begin(),samples.end(),0)/25 + 1;
+    return e; 
+}
+
+
+template<typename T>
+bool operator>(Uncertain<T>& obj,T obj2){
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(100);
+    double sum = 0.0;
+    bool check = true;
+    for(int i=0; i < 100; i++){
+        sum += (samples.at(i) > obj2);
+    }
+    sum = sum/100; 
+    if(sum > 0.6){
+        check = true; 
+    }else{
+        check = false; 
+    }
+    return check;
+    }
+
+template<typename T>
+bool operator>=(Uncertain<T>& obj,T obj2){
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(100);
+    double sum = 0.0;
+    bool check = true;
+    for(int i=0; i < 100; i++){
+        sum += (samples.at(i) >= obj2);
+    }
+    sum = sum/100; 
+    if(sum >= 0.6){
+        check = true; 
+    }else{
+        check = false; 
+    }
+    return check;
+    }
+
+template<typename T>
+bool operator<(Uncertain<T>& obj,T obj2){
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(100);
+    double sum = 0.0;
+    bool check = true;
+    for(int i=0; i < 100; i++){
+        sum += (samples.at(i) < obj2);
+    }
+    sum = sum/100; 
+    if(sum >= 0.6){
+        check = true; 
+    }else{
+        check = false; 
+    }
+    return check;
+    }
+
+template<typename T>
+bool operator<=(Uncertain<T>& obj,T obj2){
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(100);
+    double sum = 0.0;
+    bool check = true;
+    for(int i=0; i < 100; i++){
+        sum += (samples.at(i) <= obj2);
+    }
+    sum = sum/100; 
+    if(sum >= 0.6){
+        check = true; 
+    }else{
+        check = false; 
+    }
+    return check;
+    }
+
+template<typename T>
+bool operator==(Uncertain<T>& obj,T obj2){
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(100);
+    double sum = 0.0;
+    bool check = true;
+    for(int i=0; i < 100; i++){
+        sum += (samples.at(i) == obj2);
+    }
+    sum = sum/100; 
+    if(sum >= 0.6){
+        check = true; 
+    }else{
+        check = false; 
+    }
+    return check;
+    }
+
+template<typename T>
+bool operator!=(Uncertain<T>& obj,T obj2){
+    Sampler<double> s;
+    s.Create(&obj);
+    vector<double> samples = s.Take(100);
+    double sum = 0.0;
+    bool check = true;
+    for(int i=0; i < 100; i++){
+        sum += (samples.at(i) != obj2);
+    }
+    sum = sum/100; 
+    if(sum >= 0.6){
+        check = true; 
+    }else{
+        check = false; 
+    }
+    return check;
+    }
+
 
 
 //Hypothesis Testing
