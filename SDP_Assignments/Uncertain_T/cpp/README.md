@@ -54,13 +54,13 @@ Uncertain<double>* b = new Bernoulli(0.6);
 
 // Or if you can find the distribution from which a set of samples come from 
 
-list<double> set_of_samples = {3.0,3.4,3.2,3.1,2.8,2.7,2.9};
+list<double> set_of_samples = {3.0,3.0,2.0,1.0,2.0,2.0,1.0};
 
 Uncertain<double>* distribution = new Multinomial(set_of_samples); 
 
 //To generate samples from the set above, our Sampler<T> will use Monte Carlo Markov Chain technique (Random Walk Metropolis Hasting). 
 
-Sampler<double> distribution; 
+Sampler<double> s; 
 s.Create(distribution); 
 vector<double> samples = s.Take(100);
 
